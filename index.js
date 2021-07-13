@@ -149,6 +149,7 @@ const addDays = (date, days) => {
 
 const addCalendarProperties = (calendar, course) => {
   calendar.addProperty('CATEGORIES', 'CLASS');
+  calendar.addProperty('X-MICROSOFT-CDO-BUSYSTATUS', 'BUSY');
   calendar.addProperty('UID', `${course.courseCode}-${course.indexNumber}`);
 };
 
