@@ -4,7 +4,7 @@ Website: https://ztjhz.github.io/generate_class_schedule_ics/
 
 ### **Instructions:**
 
-1. **`Go`** to the **degree audit page.** Find the link to the degree audit page on the [student intranet.](https://www.ntu.edu.sg/education/academic-services/information-on-intranet-pages-for-students)
+1. **`Go`** to the **degree audit page.** Find the link to the degree audit page on the [StudentLink page.](https://venus2.wis.ntu.edu.sg/intulinks/ug/login.aspx)
 
 2. **`Scroll` to the bottom** of the degree audit page and select the year and semester and click on **"View course timetable"**
 
