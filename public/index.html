@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Generate .ics</h1>
+      <div class="dateContainer">
+        <label for="startDate"
+          >Start Date of Semester (Monday of Teaching Week 1):</label
+        >
+        <input type="date" name="startDate" id="startDate" />
+      </div>
+      <div class="textareaContainer">
+        <label for="textarea">Paste Your Timetable:</label>
+        <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+      </div>
+      <button id="generateBtn">Generate</button>
+    </div>
+    <!-- <script src="../dist/main.js"></script> -->
+    <script src="../src/index.js" type="module"></script>
+  </body>
+</html>

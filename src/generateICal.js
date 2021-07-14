@@ -1,6 +1,5 @@
-import datebook from 'datebook';
-import fs, { fstatSync } from 'fs';
-const { ICalendar } = datebook;
+import { ICalendar } from 'datebook';
+import './styles.css';
 
 // course definition
 class Course {
@@ -96,7 +95,7 @@ const parseText = (text) => {
   let currCourse;
   for (const row of rows) {
     const data = row.split('\t');
-    if (data.length > 1) {
+    if (data.length >= 6 && !data.includes('EXEMPTED')) {
       const c = new Course();
 
       // main class
@@ -117,7 +116,8 @@ const parseText = (text) => {
         c.venue = data[13];
         c.remark = data[14];
         currCourse = c;
-      } else if (data.length === 6) {
+        output.push(c);
+      } else if (data.length === 6 && currCourse) {
         // sub classes
         c.courseCode = currCourse.courseCode;
         c.title = currCourse.title;
@@ -134,8 +134,8 @@ const parseText = (text) => {
         c.time = data[3];
         c.venue = data[4];
         c.remark = data[5];
+        output.push(c);
       }
-      output.push(c);
     }
   }
   return output;
@@ -178,36 +178,11 @@ const addCourse = (calendar, course, weeks, startDate) => {
   }
 };
 
-const main = () => {
-  /* TODO
-let user paste their timetable
-*/
+const generateICal = (text, startDate) => {
+  // text: string
+  // startDate: Date
 
-  const text = `AB1202	STATISTICS & ANALYSIS	3	CORE	 	 	00550	REGISTERED	 	SEM	2	MON	1430-1620	S3-SR4	Teaching Wk1-13
-AB1301	BUSINESS LAW	3	CORE	 	 	00437	REGISTERED	 	SEM	7	TUE	0930-1220	ONLINE	Teaching Wk1-13
-CC0003	ETHICS & CIVICS IN A MULTICULTURAL WORLD	2	CORE	INTERDISCIPLINARY COLLABORATIVE CORE	 	10570	REGISTERED	 	TUT	T60	THU	1430-1620	LHN-TR+30	Teaching Wk3,5,7,9,11,13
-CC0005	HEALTHY LIVING & WELLBEING	3	CORE	INTERDISCIPLINARY COLLABORATIVE CORE	 	10620	REGISTERED	 	TUT	T44	WED	1430-1620	LHN-TR+12	Teaching Wk1-13
-LEC/STUDIO	LE2	FRI	1630-1720	ONLINE	Teaching Wk1-13
-EG1001	ENGINEERS IN SOCIETY	2	CORE	 	 	32207	REGISTERED	 	TUT	E029	TUE	1430-1520	TR+90	Teaching Wk2-13
-LEC/STUDIO	LE	WED	0830-1020	ONLINE	Teaching Wk1-13
-HE9091	PRINCIPLES OF ECONOMICS	3	CORE	 	 	 	EXEMPTED	 	 	 	 	 	 	 
-MH1810	MATHEMATICS 1	3	CORE	 	 	10120	REGISTERED	 	TUT	DD1	WED	1330-1420	TR+9	Teaching Wk2-13
-LEC/STUDIO	LB	FRI	0830-1020	ONLINE	Teaching Wk1-13
-SC1003	INTRODUCTION TO COMPUTATIONAL THINKING & PROGRAMMING	3	CORE	 	 	10020	REGISTERED	 	TUT	DD1	WED	1030-1120	SWLAB1	Teaching Wk1-13
-LAB	DD1	WED	1130-1220	SWLAB1	Teaching Wk1-13
-LEC/STUDIO	SC1	MON	0930-1020	ONLINE	Teaching Wk1-13
-SC1013	PHYSICS FOR COMPUTING	2	CORE	 	 	10072	REGISTERED	 	LAB	DD1	FRI	1430-1620	HPL	Teaching Wk1,3,5,7,9,11,13
-LEC/STUDIO	SC1	TUE	0830-0920	ONLINE	Teaching Wk5-13
-LEC/STUDIO	SC1	THU	0930-1020	ONLINE	Teaching Wk5-13
-LEC/STUDIO	SC1	MON	1930-2220	ONLINE	Teaching Wk1-4
-`;
   const parsedData = parseText(text);
-
-  /* TODO 
-let user input semester start date (must be a monday)
-*/
-
-  const startDate = new Date(2021, 7, 9);
 
   // to create a new ICalendar instance, we need to create an event first
   let course = parsedData.shift();
@@ -224,17 +199,12 @@ let user input semester start date (must be a monday)
   // loop through rest of the courses
   for (let i = 0; i < parsedData.length; i++) {
     course = parsedData[i];
-    if (course.status !== 'EXEMPTED') {
-      weeks = course.getWeeks();
-      addCourse(icalendar, course, weeks, startDate);
-    }
+    weeks = course.getWeeks();
+    addCourse(icalendar, course, weeks, startDate);
   }
 
-  // save to file
-  fs.writeFile('classes.ics', icalendar.render(), (err) => {
-    if (err) throw err;
-    console.log('Saved!');
-  });
+  console.log(icalendar.render());
+  icalendar.download('class_schedule.ics');
 };
 
-main();
+export default generateICal;
