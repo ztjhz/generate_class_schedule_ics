@@ -181,30 +181,35 @@ const addCourse = (calendar, course, weeks, startDate) => {
 const generateICal = (text, startDate) => {
   // text: string
   // startDate: Date
+  try {
+    const parsedData = parseText(text);
 
-  const parsedData = parseText(text);
+    // to create a new ICalendar instance, we need to create an event first
+    let course = parsedData.shift();
+    let weeks = course.getWeeks();
 
-  // to create a new ICalendar instance, we need to create an event first
-  let course = parsedData.shift();
-  let weeks = course.getWeeks();
+    // initialise icalendar
+    const icalendar = createEvent(course, weeks.shift(), startDate);
+    addCalendarProperties(icalendar, course);
+    icalendar.setMeta('PRODID', 'Class Schedule');
 
-  // initialise icalendar
-  const icalendar = createEvent(course, weeks.shift(), startDate);
-  addCalendarProperties(icalendar, course);
-  icalendar.setMeta('PRODID', 'Class Schedule');
-
-  // fill up rest of the weeks for the first event
-  addCourse(icalendar, course, weeks, startDate);
-
-  // loop through rest of the courses
-  for (let i = 0; i < parsedData.length; i++) {
-    course = parsedData[i];
-    weeks = course.getWeeks();
+    // fill up rest of the weeks for the first event
     addCourse(icalendar, course, weeks, startDate);
-  }
 
-  console.log(icalendar.render());
-  icalendar.download('class_schedule.ics');
+    // loop through rest of the courses
+    for (let i = 0; i < parsedData.length; i++) {
+      course = parsedData[i];
+      weeks = course.getWeeks();
+      addCourse(icalendar, course, weeks, startDate);
+    }
+
+    console.log(icalendar.render());
+    icalendar.download('class_schedule.ics');
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 };
 
 export default generateICal;

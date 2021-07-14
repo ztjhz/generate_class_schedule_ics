@@ -1,10 +1,17 @@
 import generateICal from './generateICal.js';
+import Copy from './image/copy.jpeg';
+import Generate from './image/generate_course_timetable.jpeg';
 
 const container = document.querySelector('.container');
 const dateContainer = document.querySelector('.dateContainer');
 const startDate = document.querySelector('#startDate');
 const userText = document.querySelector('#textarea');
 const btn = document.querySelector('#generateBtn');
+const instructionBtn = document.querySelector('#instructionBtn');
+const overlay = document.querySelector('.overlay');
+
+document.querySelector('#copyImage').src = Copy;
+document.querySelector('#generateImage').src = Generate;
 
 const clearMessage = () => {
   document.querySelectorAll('.message').forEach((message) => message.remove());
@@ -13,11 +20,11 @@ const clearMessage = () => {
 const showMessage = (message, type) => {
   let color, backgroundColor;
   if (type === 'error') {
-    color = '#721c24';
-    backgroundColor = '#f8d7da';
+    color = '#fff';
+    backgroundColor = '#e63946';
   } else if (type === 'success') {
-    color = '#155724';
-    backgroundColor = '#d4edda';
+    color = '#f1faee';
+    backgroundColor = '#a8dadc';
   }
   const mes = document.createElement('div');
   mes.innerText = message;
@@ -42,8 +49,19 @@ btn.onclick = () => {
         'error'
       );
     } else {
-      generateICal(userText.value, date);
-      showMessage('Success!', 'success');
+      const success = generateICal(userText.value, date);
+      if (success) {
+        showMessage('Success!', 'success');
+      } else {
+        showMessage('Time table incorrect format!', 'error');
+      }
     }
   }
+};
+
+instructionBtn.onclick = () => {
+  overlay.style.display = 'block';
+};
+overlay.onclick = (e) => {
+  if (e.target === overlay) overlay.style.display = 'none';
 };
