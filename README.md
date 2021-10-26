@@ -1,8 +1,21 @@
 # Import NTU Timetable to Outlook Calendar
 
-Website: https://ztjhz.github.io/generate_class_schedule_ics/
+![JavaScript](https://img.shields.io/badge/-JavaScript-%23F7DF1C?style=flat-square&logo=javascript&logoColor=000000&labelColor=%23F7DF1C&color=%23FFCE5A)
+![HTML5](https://img.shields.io/badge/-HTML5-%23E44D27?style=flat-square&logo=html5&logoColor=ffffff)
+![CSS3](https://img.shields.io/badge/-CSS3-%231572B6?style=flat-square&logo=css3)
 
-### **Instructions:**
+## [Live Website:](https://ztjhz.github.io/generate_class_schedule_ics/)
+
+<img src="src/image/timetable.gif" alt="demo gif" width="400"/>
+
+
+
+## Implementation:
+
+- JavaScript
+   - Parse the text pasted by user and convert it into ics format
+
+## **Instructions:**
 
 1. **`Go`** to the **degree audit page.** Find the link to the degree audit page on the [StudentLink page.](https://venus2.wis.ntu.edu.sg/intulinks/ug/login.aspx)
 
