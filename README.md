@@ -6,7 +6,7 @@
 
 ## [Live Website:](https://ztjhz.github.io/generate_class_schedule_ics/)
 
-<img src="src/image/timetable.gif" alt="demo gif" width="400"/>
+<a href="https://ztjhz.github.io/generate_class_schedule_ics/" target="_blank" alt="demo site" ><img src="src/image/timetable.gif" alt="demo gif" width="400"/></a>
 
 
 
