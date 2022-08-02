@@ -94,27 +94,27 @@ const parseText = (text) => {
   const output = [];
   let currCourse;
   for (const row of rows) {
-    const data = row.split('\t');
+    const data = row.trim().split('\t');
     if (data.length >= 6 && !data.includes('EXEMPTED')) {
       const c = new Course();
 
       // main class
       if (data.length === 15) {
-        c.courseCode = data[0];
-        c.title = data[1];
-        c.au = data[2];
-        c.courseType = data[3];
-        c.courseGroup = data[4];
-        c.su = data[5];
-        c.indexNumber = data[6];
-        c.status = data[7];
-        c.choice = data[8];
-        c.classType = data[9];
-        c.group = data[10];
-        c.day = data[11];
-        c.time = data[12];
-        c.venue = data[13];
-        c.remark = data[14];
+        c.courseCode = data[0].trim();
+        c.title = data[1].trim();
+        c.au = data[2].trim();
+        c.courseType = data[3].trim();
+        c.courseGroup = data[4].trim();
+        c.su = data[5].trim();
+        c.indexNumber = data[6].trim();
+        c.status = data[7].trim();
+        c.choice = data[8].trim();
+        c.classType = data[9].trim();
+        c.group = data[10].trim();
+        c.day = data[11].trim();
+        c.time = data[12].trim();
+        c.venue = data[13].trim();
+        c.remark = data[14].trim();
         currCourse = c;
         output.push(c);
       } else if (data.length === 6 && currCourse) {
@@ -128,12 +128,12 @@ const parseText = (text) => {
         c.indexNumber = currCourse.indexNumber;
         c.status = currCourse.status;
         c.choice = currCourse.choice;
-        c.classType = data[0];
-        c.group = data[1];
-        c.day = data[2];
-        c.time = data[3];
-        c.venue = data[4];
-        c.remark = data[5];
+        c.classType = data[0].trim();
+        c.group = data[1].trim();
+        c.day = data[2].trim();
+        c.time = data[3].trim();
+        c.venue = data[4].trim();
+        c.remark = data[5].trim();
         output.push(c);
       }
     }
