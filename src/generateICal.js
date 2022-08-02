@@ -93,9 +93,10 @@ const parseText = (text) => {
   const rows = text.split('\n');
   const output = [];
   let currCourse;
-  for (const row of rows) {
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
     const data = row.trim().split('\t');
-    if (data.length >= 6 && !data.includes('EXEMPTED')) {
+    if (data.length >= 5 && !data.includes('EXEMPTED')) {
       const c = new Course();
 
       // main class
@@ -117,6 +118,26 @@ const parseText = (text) => {
         c.remark = data[14].trim();
         currCourse = c;
         output.push(c);
+      } else if (data.length === 14) {
+        // venue has newline character: \n
+        const data2 = rows[++i].trim().split('\t');
+        c.courseCode = data[0].trim();
+        c.title = data[1].trim();
+        c.au = data[2].trim();
+        c.courseType = data[3].trim();
+        c.courseGroup = data[4].trim();
+        c.su = data[5].trim();
+        c.indexNumber = data[6].trim();
+        c.status = data[7].trim();
+        c.choice = data[8].trim();
+        c.classType = data[9].trim();
+        c.group = data[10].trim();
+        c.day = data[11].trim();
+        c.time = data[12].trim();
+        c.venue = data[13].trim() + ' ' + data2[0].trim();
+        c.remark = data2[1].trim();
+        currCourse = c;
+        output.push(c);
       } else if (data.length === 6 && currCourse) {
         // sub classes
         c.courseCode = currCourse.courseCode;
@@ -134,6 +155,26 @@ const parseText = (text) => {
         c.time = data[3].trim();
         c.venue = data[4].trim();
         c.remark = data[5].trim();
+        output.push(c);
+      } else if (data.length === 5 && currCourse) {
+        // sub classes
+        // venue has newline character: \n
+        const data2 = rows[++i].trim().split('\t');
+        c.courseCode = currCourse.courseCode;
+        c.title = currCourse.title;
+        c.au = currCourse.au;
+        c.courseType = currCourse.courseType;
+        c.courseGroup = currCourse.courseGroup;
+        c.su = currCourse.su;
+        c.indexNumber = currCourse.indexNumber;
+        c.status = currCourse.status;
+        c.choice = currCourse.choice;
+        c.classType = data[0].trim();
+        c.group = data[1].trim();
+        c.day = data[2].trim();
+        c.time = data[3].trim();
+        c.venue = data[4].trim() + ' ' + data2[0].trim();
+        c.remark = data2[1].trim();
         output.push(c);
       }
     }
