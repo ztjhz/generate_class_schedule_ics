@@ -8,13 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Belleza&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <div class="container">
-      <h1 class="title">Generate .ics</h1>
+      <h1 class="title">NTU Class Schedule Generator for Calendar</h1>
       <button class="btn" id="instructionBtn">Instructions</button>
       <div class="dateContainer">
         <label for="startDate"
@@ -28,6 +29,34 @@
       </div>
       <button id="generateBtn" class="btn">Generate</button>
     </div>
+
+    <div class="description">
+      <h2>About this Tool</h2>
+      <p>
+        This tool converts Nanyang Technological University (NTU) timetable into
+        an
+        <a href="https://en.wikipedia.org/wiki/ICalendar" target="_blank"
+          >iCalendar</a
+        >
+        (Internet Calendaring and Scheduling Core Object Specification).
+      </p>
+      <p>
+        This iCalendar can then be imported into various calendars such as
+        Outlook, Google Calendar, Apple Calendar, and many more!
+      </p>
+    </div>
+
+    <a
+      class="github"
+      href="https://github.com/ztjhz/generate_class_schedule_ics"
+      target="_blank"
+      ><img src="src/image/github.svg"
+    /></a>
+
+    <p class="made-by">
+      Made with ❤️ by
+      <a href="https://github.com/ztjhz" target="_blank">Jing Hua</a>
+    </p>
 
     <div class="overlay">
       <div class="instructionContainer">
@@ -77,7 +106,6 @@
         <p>7. <span class="highlight">Click on the Generate button</span></p>
       </div>
     </div>
-    <!-- <script src="../dist/main.js"></script> -->
     <script src="../src/index.js" type="module"></script>
   </body>
 </html>

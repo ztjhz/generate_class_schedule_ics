@@ -4,16 +4,14 @@
 ![HTML5](https://img.shields.io/badge/-HTML5-%23E44D27?style=flat-square&logo=html5&logoColor=ffffff)
 ![CSS3](https://img.shields.io/badge/-CSS3-%231572B6?style=flat-square&logo=css3)
 
-## [Live Website:](https://ztjhz.github.io/generate_class_schedule_ics/)
+## [Live Website:](https://ntu-calendar.tjh.sg/)
 
 <a href="https://ztjhz.github.io/generate_class_schedule_ics/" target="_blank" alt="demo site" ><img src="src/image/timetable.gif" alt="demo gif" width="400"/></a>
-
-
 
 ## Implementation:
 
 - JavaScript
-   - Parse the text pasted by user and convert it into ics format
+  - Parse the text pasted by user and convert it into ics format
 
 ## **Instructions:**
 

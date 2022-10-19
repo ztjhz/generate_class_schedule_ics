@@ -1,5 +1,4 @@
 import { ICalendar } from 'datebook';
-import './styles.css';
 
 // course definition
 class Course {
