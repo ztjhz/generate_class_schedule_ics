@@ -1,6 +1,9 @@
 import generateICal from './generateICal.js';
-import Copy from './image/copy.jpeg';
-import Generate from './image/generate_course_timetable.jpeg';
+import './images/copy.jpeg';
+import './images/generate_course_timetable.jpeg';
+import './images/github.svg';
+import './images/icon.png';
+import './styles.css';
 
 const container = document.querySelector('.container');
 const dateContainer = document.querySelector('.dateContainer');
@@ -9,9 +12,6 @@ const userText = document.querySelector('#textarea');
 const btn = document.querySelector('#generateBtn');
 const instructionBtn = document.querySelector('#instructionBtn');
 const overlay = document.querySelector('.overlay');
-
-document.querySelector('#copyImage').src = Copy;
-document.querySelector('#generateImage').src = Generate;
 
 const clearMessage = () => {
   document.querySelectorAll('.message').forEach((message) => message.remove());

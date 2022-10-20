@@ -6,7 +6,7 @@
 
 ## [Live Website:](https://ntu-calendar.tjh.sg/)
 
-<a href="https://ztjhz.github.io/generate_class_schedule_ics/" target="_blank" alt="demo site" ><img src="src/image/timetable.gif" alt="demo gif" width="400"/></a>
+<a href="https://ztjhz.github.io/generate_class_schedule_ics/" target="_blank" alt="demo site" ><img src="src/images/timetable.gif" alt="demo gif" width="400"/></a>
 
 ## Implementation:
 
@@ -19,11 +19,11 @@
 
 2. **`Scroll` to the bottom** of the degree audit page and select the year and semester and click on **"View course timetable"**
 
-   ![generate_course_timetable.jpeg](src/image/generate_course_timetable.jpeg)
+   ![generate_course_timetable.jpeg](src/images/generate_course_timetable.jpeg)
 
 3. **`Copy`** from the **top left to the bottom right** of the table (The table heading is not required)
 
-   ![image/copy.jpeg](src/image/copy.jpeg)
+   ![images/copy.jpeg](src/images/copy.jpeg)
 
 4. **`Paste`** the timetable into the form when you close this instruction page
 

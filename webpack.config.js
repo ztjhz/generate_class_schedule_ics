@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -11,21 +12,28 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [
-          // The `injectType`  option can be avoided because it is default behaviour
-          { loader: 'style-loader', options: { injectType: 'styleTag' } },
-          'css-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: 'asset/inline',
+        use: [
+          {
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+            },
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './src/index.html',
+      favicon: './src/images/favicon.ico', // Calendar icons created by DinosoftLabs - Flaticon
     }),
+    new MiniCssExtractPlugin(),
   ],
 };
