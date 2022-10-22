@@ -3,6 +3,7 @@ import './images/copy.jpeg';
 import './images/generate_course_timetable.jpeg';
 import './images/github.svg';
 import './images/icon.png';
+import './images/demo.png';
 import './styles.css';
 
 const container = document.querySelector('.container');
