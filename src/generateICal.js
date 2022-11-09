@@ -68,6 +68,8 @@ Remark: ${this.remark}`;
   }
 
   getWeeks() {
+    if (!this.remark.includes('Teaching Wk')) return [];
+
     const start = this.remark.indexOf('Teaching Wk') + 'Teaching Wk'.length;
     const w = this.remark.substring(start);
     const arr = [];
@@ -187,10 +189,28 @@ const addDays = (date, days) => {
   return result;
 };
 
+const convertDateToDSTAMPFormat = (date) => {
+  const year = date.getUTCFullYear();
+  const month = pad(date.getUTCMonth() + 1);
+  const day = pad(date.getUTCDate());
+  const hour = pad(date.getUTCHours());
+  const minute = pad(date.getUTCMinutes());
+  const second = pad(date.getUTCSeconds());
+  return `${year}${month}${day}T${hour}${minute}${second}Z`;
+};
+
+const pad = (i) => {
+  return i < 10 ? `0${i}` : `${i}`;
+};
+
 const addCalendarProperties = (calendar, course) => {
   calendar.addProperty('CATEGORIES', 'CLASS');
   calendar.addProperty('X-MICROSOFT-CDO-BUSYSTATUS', 'BUSY');
-  calendar.addProperty('UID', `${course.courseCode}-${course.indexNumber}`);
+  calendar.addProperty(
+    'UID',
+    `${course.courseCode}-${course.indexNumber}-${crypto.randomUUID()}`
+  );
+  calendar.addProperty('DTSTAMP', convertDateToDSTAMPFormat(new Date()));
 };
 
 const createEvent = (course, weekNum, startDate) => {
